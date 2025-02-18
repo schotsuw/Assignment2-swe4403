@@ -5,6 +5,9 @@
 
 package assigment2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author mac2
@@ -12,9 +15,16 @@ package assigment2;
 public class ConfigurationManager {
     //Private static instance variable
     private static ConfigurationManager instance;
+    
+    // Configuration settings stored in a map
+    private Map<String, String> configSettings;
 
     //Private constructor
-    private ConfigurationManager() {
+    ConfigurationManager() {
+        // Initialize configuration settings
+        configSettings = new HashMap<>();
+        configSettings.put("appName", "MyApplication");
+        configSettings.put("version", "1.0.0");
     }
 
     //Public static method to get the instance
@@ -25,9 +35,12 @@ public class ConfigurationManager {
         return instance;
     }
 
-    //get a configuration value
+    //Methods to get and set configuration values
     public String getConfigValue(String key) {
-        //a dummy value for demo
-        return "DummyValue";
+        return configSettings.get(key);
+    }
+
+    public void setConfigValue(String key, String value) {
+        configSettings.put(key, value);
     }
 }
